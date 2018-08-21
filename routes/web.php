@@ -61,7 +61,7 @@ Route::get('/cliente', function(){
 	<html>
 	<body>
 		<h1>Cliente</h1>
-		<form method="post" action="cliente/cadastrar">
+		<form method="post" action="/cliente/cadastrar">
 			<input type="hidden" name="_token" value="$csrfToken">
 			<input type="text" name="nome">
 			<button type="submit">Enviar</button>
@@ -70,6 +70,11 @@ Route::get('/cliente', function(){
 	</html>
 HTML;
 	return $html;
+});
+
+Route::post('/cliente/cadastrar', function(Request $requisicao){
+	echo $requisicao->nome;
+	echo $requisicao->get('nome');
 });
 
 Route::get('/admin/cliente', function(){
