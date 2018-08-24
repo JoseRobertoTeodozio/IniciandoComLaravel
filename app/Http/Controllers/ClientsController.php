@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ClientsController extends Controller
 {
+    public function listar(){
+        $clients = \App\Client::all();
+        return view('admin.cliente.list', compact('clients'));
+    }
+
     public function cadastrar(){
     	$nome = 'Jose Roberto';
     	$idade = '31 anos';

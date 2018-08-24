@@ -11,6 +11,7 @@
 |
 */
 use Illuminate\Http\Request;
+
 //Model - View - Controller
 //StudlyCaps
 Route::get('/', function () {
@@ -25,8 +26,10 @@ Route::group(['prefix' => '/'],function(){
 		var_dump(getenv('NOME'));
 	});
 });
+
 Route::group(['prefix' => '/admin'],function(){
-	Route::get('cliente/cadastrar', 'ClientsController@cadastrar');
+	Route::get('client', 'ClientsController@listar');
+	// Route::get('cliente/cadastrar', 'ClientsController@cadastrar');
 });
 
 Route::get('/blade', function(){
