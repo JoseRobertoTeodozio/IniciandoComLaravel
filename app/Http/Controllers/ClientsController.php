@@ -11,14 +11,26 @@ class ClientsController extends Controller
         return view('admin.cliente.list', compact('clients'));
     }
 
-    public function cadastrar(){
-    	$nome = 'Jose Roberto';
-    	$idade = '31 anos';
-
-    	return view('cliente.cadastrar')
-    	->with('n',$nome)
-    	->with('v',$idade);
+    public function formCadastrar(){
+        return view('admin.cliente.create');
     }
+
+    public function cadastrar(Request $request){
+        $client = new \App\Client();
+        $client->name = $request->name;
+        $client->email = $request->email;
+        $client->save();
+        return redirect()->to('/admin/client');
+    }
+
+    // public function cadastrar(){
+    // 	$nome = 'Jose Roberto';
+    // 	$idade = '31 anos';
+
+    // 	return view('cliente.cadastrar')
+    // 	->with('n',$nome)
+    // 	->with('v',$idade);
+    // }
 
     public function excluir(){
     	
