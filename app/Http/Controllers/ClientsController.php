@@ -23,6 +23,25 @@ class ClientsController extends Controller
         return redirect()->to('/admin/client');
     }
 
+    public function formEditar($id){
+        $client = \App\Client::find($id);
+        if(!$client){
+            abort(404);
+        }
+        return view('admin.cliente.edit', compact('client'));
+    }
+
+    public function editar(Request $request, $id){
+        $client = \App\Client::find($id);
+        if(!$client){
+            abort(404);
+        }
+        $client->name = $request->name;
+        $client->email = $request->email;
+        $client->save();
+        return redirect()->to('/admin/client');
+    }
+
     // public function cadastrar(){
     // 	$nome = 'Jose Roberto';
     // 	$idade = '31 anos';
@@ -32,11 +51,12 @@ class ClientsController extends Controller
     // 	->with('v',$idade);
     // }
 
-    public function excluir(){
-    	
-    }
-
-    public function editar(){
-
+    public function excluir(Request $request, $id){
+    	$client = \App\Client::find($id);
+        if(!$client){
+            abort(404);
+        }
+        $client->delete();
+        return redirect()->to('/admin/client');
     }
 }
